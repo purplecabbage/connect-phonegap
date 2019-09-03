@@ -28,34 +28,4 @@ describe('cordova_plugins.js middleware', function() {
             });
         });
     });
-
-    describe('when cordova_plugins.js not exists', function () {
-        describe('on Android', function() {
-            beforeEach(function() {
-                useragent.parse.and.returnValue({ android: true, platform: 'android' });
-            });
-
-            it('should serve cordova_plugins.js', function(done) {
-                chdir('spec/fixture/app-without-cordova', function() {
-                    request(phonegap()).get('/cordova_plugins.js').end(function(e, res) {
-                        expect(res.statusCode).toEqual(200);
-                        expect(res.text).toMatch('www/android');
-                        done();
-                    });
-                });
-            });
-        });
-
-        describe('on iOS', function() {
-            it('should serve cordova_plugins.js', function(done) {
-                chdir('spec/fixture/app-without-cordova', function() {
-                    request(phonegap()).get('/cordova_plugins.js').end(function(e, res) {
-                        expect(res.statusCode).toEqual(200);
-                        expect(res.text).toMatch('www/ios');
-                        done();
-                    });
-                });
-            });
-        });
-    });
 });

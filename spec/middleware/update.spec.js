@@ -70,7 +70,7 @@ describe('update middleware', function() {
                             res.data += chunk;
                         });
                         res.on('end', function () {
-                            callback(null, new Buffer(res.data, 'binary'));
+                            callback(null, Buffer.from(res.data, 'binary'));
                         });
                     })
                     .end(function(e, res) {
@@ -93,7 +93,7 @@ describe('update middleware', function() {
                                 res.data += chunk;
                             });
                             res.on('end', function () {
-                                callback(null, new Buffer(res.data, 'binary'));
+                                callback(null, Buffer.from(res.data, 'binary'));
                             });
                         })
                         .end(function(e, res) {
